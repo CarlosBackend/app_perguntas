@@ -33,7 +33,7 @@ main() {
              ),
              ElevatedButton(
                  child: Text('Resposta 2'),
-                 onPressed: _responder
+                 onPressed: null,
              ),
              ElevatedButton(
                  child: Text('Resposta 3'),
