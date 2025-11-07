@@ -28,9 +28,9 @@ main() {
          body: Column(
            children: <Widget>[
              Questao(perguntas[_perguntaSelecionada]),
-             Resposta('Resposta 1'),
-             Resposta('Resposta 2'),
-             Resposta('Resposta 3'),
+             Resposta('Resposta 1', _responder),
+             Resposta('Resposta 2',_responder),
+             Resposta('Resposta 3',_responder),
            ],
          ),
        ),
