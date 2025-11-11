@@ -7,6 +7,7 @@ main() {
  class _PerguntaAppState extends State<_PerguntaApp> {
    var _perguntaSelecionada = 0;
    void _responder(){
+     // Esse metodo muda o estado da tela
      setState(() {
         _perguntaSelecionada++;
      });
@@ -24,10 +25,7 @@ main() {
          'texto': 'Qual é o seu instrutor favorito?',
          'respostas': ['Maria', 'João', 'Leo', 'Pedro']
        }];
-     List<Widget> respostas = [];
-     for(String textoResp in perguntas[_perguntaSelecionada].cast()['respostas']){
-       respostas.add(Resposta(textoResp, _responder));
-     }
+     List<String> respostas = perguntas[_perguntaSelecionada]['respostas'] as List<String>;
      return MaterialApp(
        home: Scaffold(
          appBar: AppBar(
@@ -38,7 +36,7 @@ main() {
          body: Column(
            children: <Widget>[
              Questao(perguntas[_perguntaSelecionada]['texto'].toString()),
-             ...respostas
+             ...respostas.map((t) => Resposta(t, _responder)).toList(),
            ],
          ),
        ),
