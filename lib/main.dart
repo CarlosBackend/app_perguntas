@@ -24,6 +24,10 @@ main() {
          'texto': 'Qual é o seu instrutor favorito?',
          'respostas': ['Maria', 'João', 'Leo', 'Pedro']
        }];
+     List<Widget> respostas = [];
+     for(String textoResp in perguntas[_perguntaSelecionada].cast()['respostas']){
+       respostas.add(Resposta(textoResp, _responder));
+     }
      return MaterialApp(
        home: Scaffold(
          appBar: AppBar(
@@ -34,9 +38,7 @@ main() {
          body: Column(
            children: <Widget>[
              Questao(perguntas[_perguntaSelecionada]['texto'].toString()),
-             Resposta('Resposta 1', _responder),
-             Resposta('Resposta 2',_responder),
-             Resposta('Resposta 3',_responder),
+             ...respostas
            ],
          ),
        ),
