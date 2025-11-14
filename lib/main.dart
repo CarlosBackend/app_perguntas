@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import './resposta.dart';
-import './questao.dart';
+import './questionario.dart';
+import './resultado.dart';
 main() {
   runApp(_PerguntaApp());
 }
@@ -30,7 +30,6 @@ main() {
    }
    @override
    Widget build(BuildContext context) {
-
      List<String> respostas = temPerguntaSelecionada ? _perguntas[_perguntaSelecionada]['respostas'] as List<String> : [];
      return MaterialApp(
        home: Scaffold(
@@ -39,17 +38,15 @@ main() {
            centerTitle: true,
            backgroundColor: Colors.blue,
          ),
-         body: temPerguntaSelecionada ? Column(
-           children: <Widget>[
-             Questao(_perguntas[_perguntaSelecionada]['texto'].toString()),
-             ...respostas.map((t) => Resposta(t, _responder)).toList(),
-           ],
-         ): null,
+         body: temPerguntaSelecionada ? Questionario(
+           perguntas: _perguntas,
+           perguntaSelecionada: _perguntaSelecionada,
+           quuandoResponder: _responder,
+         ): Resultado(),
        ),
      );
    }
- }
-class _PerguntaApp extends StatefulWidget {
+ }class _PerguntaApp extends StatefulWidget {
   @override
    _PerguntaAppState createState() {
     return _PerguntaAppState();
