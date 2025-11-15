@@ -6,23 +6,41 @@ main() {
 }
  class _PerguntaAppState extends State<_PerguntaApp> {
    var _perguntaSelecionada = 0;
+   var _pontuacaoTotal = 0;
    final _perguntas = const [{
      'texto': 'Qual é a sua cor favorita?',
-     'respostas': ['Preto', 'Vermelho', 'Verde', 'Branco'],
+     'respostas': [
+       {'texto': 'Preto','pontuacao':10},
+       {'texto': 'Vermelho','pontuacao':5},
+       {'texto': 'Verde','pontuacao':3},
+       {'texto': 'Branco','pontuacao':1},
+     ],
    }, {
      'texto': 'Qual é o seu animal favorito?',
-     'respostas': ['Coelho', 'Cobra', 'Elefante', 'Leão']
+     'respostas': [
+       {'texto': 'Coelho','pontuacao':10},
+       {'texto': 'Cobra','pontuacao': 5},
+       {'texto': 'Elefante','pontuacao': 3} ,
+       {'texto': 'Leão','pontuacao': 1 }
+     ]
    }, {
      'texto': 'Qual é o seu instrutor favorito?',
-     'respostas': ['Maria', 'João', 'Leo', 'Pedro']
+     'respostas': [
+       {'texto': 'Maria','pontuacao': 10},
+       {'texto': 'Leo','pontuacao': 5},
+       {'texto': 'João','pontuacao': 3},
+       {'texto': 'Pedro','pontuacao': 1}
+     ]
    }];
-   void _responder(){
+   void _responder(int pontuacao){
      if(temPerguntaSelecionada){
        // Esse metodo muda o estado da tela
        setState(() {
          _perguntaSelecionada++;
+         _pontuacaoTotal += pontuacao;
        });
      }
+     print(_pontuacaoTotal);
    }
 
    bool get temPerguntaSelecionada {
@@ -30,7 +48,7 @@ main() {
    }
    @override
    Widget build(BuildContext context) {
-     List<String> respostas = temPerguntaSelecionada ? _perguntas[_perguntaSelecionada]['respostas'] as List<String> : [];
+     List<Map<String, Object>> respostas = temPerguntaSelecionada ? _perguntas[_perguntaSelecionada]['respostas'] as List<Map<String, Object>> : [];
      return MaterialApp(
        home: Scaffold(
          appBar: AppBar(
